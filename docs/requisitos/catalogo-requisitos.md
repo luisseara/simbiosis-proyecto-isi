@@ -2,21 +2,31 @@
 
 ## Catálogo de requisitos
 
-**Versión:** 1.10  
-**Fecha:** 23/09/2026  
-**Estado:** Base funcional consolidada: UR y FR canónicos; NFR pendientes  
-**Fuente de verdad:** este catálogo contiene el texto canónico de los requisitos de usuario (UR) y funcionales (FR). Incorporará también los requisitos no funcionales (NFR) cuando se consoliden.
+**Versión:** 1.12
+**Fecha:** 29/09/2026
+**Estado:** UR, FR y NFR de la primera versión consolidados
+**Fuente de verdad:** este catálogo contiene el texto canónico de los requisitos de usuario (UR), funcionales (FR) y no funcionales (NFR).
 
 Este documento complementa la [Especificación de requisitos de software](./srs.md). La SRS organiza el contexto, el alcance, las decisiones pendientes y los modelos; este catálogo conserva una única copia de cada requisito y sus relaciones.
 
 La referencia común al catálogo canónico y a la SRS aparece en la cabecera. La procedencia de cada incorporación o modificación queda registrada en el control de cambios.
+
+## Índice
+
+1. [Convenciones](#1-convenciones)
+2. [Objetivos de negocio relacionados](#2-objetivos-de-negocio-relacionados)
+3. [Requisitos de usuario](#3-requisitos-de-usuario)
+4. [Requisitos funcionales](#4-requisitos-funcionales)
+5. [Requisitos no funcionales](#5-requisitos-no-funcionales)
+6. [Matriz de trazabilidad](#6-matriz-de-trazabilidad)
+7. [Control de cambios](#7-control-de-cambios)
 
 ## 1. Convenciones
 
 - `BO-0X`: objetivo de negocio, cuando se necesite conservar la relación con el Documento de Visión y Alcance.
 - `UR-0X`: requisito de usuario.
 - `FR-0XX`: requisito funcional.
-- `NFR-0X`: requisito no funcional.
+- `NFR-0XX`: requisito no funcional.
 - `UC-0X`: caso de uso relacionado, cuando exista un modelo que lo interprete.
 
 Los UR se redactan desde la perspectiva de la persona usuaria: «El [tipo de usuario] podrá [acción] [finalidad]». Cada UR expresa una única necesidad de alto nivel.
@@ -276,32 +286,51 @@ FR-017 se conserva para no perder el identificador histórico, pero su estado es
 
 ## 5. Requisitos no funcionales
 
-| ID | Categoría y atributo | Requisito no funcional | Ámbito (Global/Local) | UR/FR relacionados | Método de comprobación | Estado |
-| --- | --- | --- | --- | --- | --- | --- |
-| NFR-07 |NFR-Q (Eficiencia; Escalabilidad; Mantenibilidad) |La plataforma mantendrá los objetivos de capacidad y rendimiento definidos para la primera versión sin intervención manual del personal de la organización.| G | -  | Prueba de carga automatizada con 100 usuarios concurrentes y 10 operaciones/s durante 30 min; comprobar mediante registros de monitorización, ausencia de intervención manual. | - |
+| ID | Categoría y atributo | Requisito no funcional | Ámbito | UR/FR relacionados | Fuente | Método de comprobación | Estado |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| NFR-001 | NFR-Q · Disponibilidad | La plataforma alcanzará una disponibilidad mínima del 99,5 % en cada mes natural, medida mediante comprobaciones externas cada cinco minutos. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.1.4 | Revisar las comprobaciones externas de cada cinco minutos y calcular la disponibilidad mensual conforme al acta. | Vigente |
+| NFR-002 | NFR-Q · Integridad | La plataforma realizará al menos una copia de seguridad diaria de la información de salud y de las recetas. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.2.1; [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §3.3 | Revisar el registro de copias de seguridad y comprobar que no falte ninguna copia diaria. | Vigente |
+| NFR-003 | NFR-Q · Localización e internacionalización | La primera versión estará disponible en castellano y gallego. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.4.4; [acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.2 | Revisar todas las pantallas y mensajes de la primera versión en ambos idiomas. | Vigente |
+| NFR-004 | NFR-Q · Capacidad y escalabilidad | La plataforma soportará una carga de 100 usuarios concurrentes y 10 operaciones por segundo durante 30 minutos. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.1.1 y §2.1.2 | Ejecutar una prueba de carga con 100 usuarios concurrentes y 10 operaciones por segundo durante 30 minutos. | Vigente |
+| NFR-005 | NFR-Q · Rendimiento | Con la carga de NFR-004, el 95 % de los inicios de sesión y de las consultas definidas para la prueba se completará en un máximo de 2 segundos. | L | UR-02, UR-03, UR-04, UR-08 (FR-015, FR-018, FR-019, FR-085, FR-089, FR-195) | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.1.2 y §2.1.3 | Medir los tiempos del 95 % de las operaciones indicadas durante la prueba de NFR-004, con los límites de medición del acta. | Vigente |
+| NFR-006 | NFR-Q · Rendimiento | Con la carga de NFR-004, el 95 % de las publicaciones de recetas, comentarios o mensajes se completará en un máximo de 3 segundos. | L | UR-04, UR-06, UR-11 (FR-022, FR-023, FR-054, FR-156, FR-196) | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.1.2 y §2.1.3 | Medir los tiempos del 95 % de las operaciones indicadas durante la prueba de NFR-004, con los límites de medición del acta. | Vigente |
+| NFR-007 | NFR-Q · Rendimiento y Mantenibilidad | La plataforma mantendrá los objetivos de capacidad y rendimiento definidos para la primera versión sin intervención manual del personal de la organización. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.1.1 | Ejecutar la prueba de carga de NFR-004 y comprobar en los registros el ajuste automático de recursos y la ausencia de intervención manual del personal de la organización. | Vigente |
+| NFR-008 | NFR-Q · Recuperabilidad | Tras un incidente grave, la plataforma recuperará las funciones principales en un máximo de cuatro horas desde la declaración del incidente. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.2.1 | Probar la recuperación tras un incidente grave y medir el tiempo desde su declaración hasta la recuperación de las funciones principales. | Vigente |
+| NFR-009 | NFR-Q · Integridad | Tras un incidente grave, la pérdida de información no superará la correspondiente a las 24 horas anteriores al incidente. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.2.1 | Restaurar una copia tras un incidente simulado y comprobar la antigüedad de la información recuperada. | Vigente |
+| NFR-010 | NFR-Q · Accesibilidad | Todas las pantallas y funciones de la primera versión cumplirán el estándar WCAG 2.2, nivel AA. La conformidad se revisará antes de aceptar la versión y después de cambios importantes de interfaz. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.4.2 y §2.4.3 | Combinar una herramienta automática y una revisión manual de los recorridos indicados en el acta. | Vigente |
+| NFR-011 | NFR-R · Plataforma | El acceso a la plataforma se realizará mediante una interfaz web responsiva y no requerirá la instalación de una aplicación nativa o de escritorio en el dispositivo cliente. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.5.1; [SRS](./srs.md), §1.3 y §2.3 | Revisar la arquitectura y comprobar el acceso desde navegadores compatibles sin instalación adicional. | Vigente |
+| NFR-012 | NFR-R · Despliegue | La plataforma se desplegará en una infraestructura en la nube gestionada por un proveedor externo. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.5.2; [SRS](./srs.md), §2.4; [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §3.3 | Revisar la arquitectura y la configuración del despliegue. | Vigente |
+| NFR-013 | NFR-R · Tecnología web | La interfaz cliente se implementará utilizando estándares web abiertos —HTML5, CSS y ECMAScript— y no dependerá de plugins propietarios ni requerirá la instalación de software adicional en el dispositivo de la persona usuaria. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.5.1 | Revisar las dependencias del cliente y comprobar el acceso sin plugins ni software adicional. | Vigente |
+| NFR-014 | NFR-I · Interfaz de usuario y localización | La interfaz permitirá cambiar entre castellano y gallego. Al seleccionar un idioma, los textos de navegación, formularios, validaciones y mensajes de la interfaz se mostrarán íntegramente en ese idioma. | G | — | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.4.4; [acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.2; [SRS](./srs.md), §7 | Cambiar el idioma y revisar todas las pantallas y mensajes de la primera versión en ambos idiomas. | Vigente |
+| NFR-015 | NFR-I · Interfaz de software y autenticación | La autenticación mediante una cuenta de Google utilizará OAuth 2.0 u OpenID Connect sobre HTTPS y la plataforma no almacenará la contraseña de Google. | L | UR-01, UR-02 (FR-006, FR-018) | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.3.1; [SRS](./srs.md), §5.2 | Probar la autenticación con una cuenta de prueba y revisar la configuración de la integración. | Vigente |
 
-Categorías y atributos: 
-1) Requisitos de calidad (NFR-Q): Rendimiento, Usabilidad, Seguridad, Fiabilidad, Disponibilidad, Modificabilidad, Portabilidad, Eficiencia, Escalabilidad, Verificabilidad / Testabilidad, Robustez, Seguridad funcional (safety), Integridad, Reusabilidad, Instalabilidad.
-2) Restricciones (NFR-R): Tecnología y entorno, Hardware, Regulaciones y estándares, Compatibilidad, Interfaces existentes, Restricciones presupuestarias y de gestión.
-3) Requisitos de interfaz externa (NFR-I): Interfaz de usuario, Interfaz de software, Interfaz de hardware, Interfaz de comunicación
+`NFR-Q` identifica atributos de calidad; `NFR-R`, restricciones de diseño e implementación; y `NFR-I`, requisitos de interfaz externa. El ámbito indica `G` si aplica globalmente a toda la plataforma o `L` si aplica localmente a requisitos de usuario o funcionales específicos.
+
+Categorías y atributos:
+
+1. Requisitos de calidad (NFR-Q): Rendimiento, Usabilidad, Seguridad, Fiabilidad, Disponibilidad, Modificabilidad, Portabilidad, Eficiencia, Escalabilidad, Verificabilidad / Testabilidad, Robustez, Seguridad funcional (safety), Integridad, Reusabilidad, Instalabilidad.
+2. Restricciones (NFR-R): Tecnología y entorno, Hardware, Regulaciones y estándares, Compatibilidad, Interfaces existentes, Restricciones presupuestarias y de gestión.
+3. Requisitos de interfaz externa (NFR-I): Interfaz de usuario, Interfaz de software, Interfaz de hardware, Interfaz de comunicación.
 
 ## 6. Matriz de trazabilidad
 
 | UR | FR asociados | NFR globales o ligados | UC relacionados |
 | --- | --- | --- | --- |
-| UR-01 | FR-001, FR-002, FR-003, FR-004, FR-005, FR-006, FR-007, FR-008, FR-009, FR-010, FR-011, FR-012, FR-013, FR-014, FR-188, FR-189, FR-190, FR-191, FR-192, FR-193, FR-194, FR-213, FR-214, FR-215 | — | — |
-| UR-02 | FR-015, FR-016, FR-017, FR-018 | — | — |
-| UR-03 | FR-019, FR-020 | — | — |
-| UR-04 | FR-021, FR-022, FR-023, FR-024, FR-025, FR-026, FR-027, FR-028, FR-029, FR-030, FR-031, FR-032, FR-033, FR-034, FR-035, FR-036, FR-037, FR-038, FR-039, FR-040, FR-195, FR-196, FR-197 | — | — |
+| UR-01 | FR-001, FR-002, FR-003, FR-004, FR-005, FR-006, FR-007, FR-008, FR-009, FR-010, FR-011, FR-012, FR-013, FR-014, FR-188, FR-189, FR-190, FR-191, FR-192, FR-193, FR-194, FR-213, FR-214, FR-215 | NFR-015 | — |
+| UR-02 | FR-015, FR-016, FR-017, FR-018 | NFR-005, NFR-015 | — |
+| UR-03 | FR-019, FR-020 | NFR-005 | — |
+| UR-04 | FR-021, FR-022, FR-023, FR-024, FR-025, FR-026, FR-027, FR-028, FR-029, FR-030, FR-031, FR-032, FR-033, FR-034, FR-035, FR-036, FR-037, FR-038, FR-039, FR-040, FR-195, FR-196, FR-197 | NFR-005, NFR-006 | — |
 | UR-05 | FR-041, FR-042, FR-043, FR-044, FR-045, FR-046, FR-047, FR-048, FR-049, FR-050, FR-051, FR-052, FR-053, FR-198, FR-199, FR-200, FR-201, FR-202, FR-203, FR-216, FR-217 | — | — |
-| UR-06 | FR-054, FR-055, FR-056, FR-057, FR-058, FR-059, FR-060, FR-061, FR-062, FR-063, FR-064, FR-065, FR-066, FR-204, FR-205 | — | — |
+| UR-06 | FR-054, FR-055, FR-056, FR-057, FR-058, FR-059, FR-060, FR-061, FR-062, FR-063, FR-064, FR-065, FR-066, FR-204, FR-205 | NFR-006 | — |
 | UR-07 | FR-067, FR-068, FR-069, FR-070, FR-071, FR-072, FR-073, FR-074, FR-075, FR-076, FR-077, FR-078, FR-079, FR-080, FR-081, FR-082, FR-083, FR-084, FR-206 | — | — |
-| UR-08 | FR-085, FR-086, FR-087, FR-088, FR-089, FR-090, FR-091, FR-092, FR-093, FR-094, FR-095, FR-096, FR-097, FR-098, FR-099, FR-100, FR-101, FR-102, FR-103, FR-104, FR-105, FR-106, FR-107, FR-108, FR-109, FR-110, FR-111, FR-112, FR-113, FR-114, FR-115, FR-116, FR-117, FR-118, FR-119 | — | — |
+| UR-08 | FR-085, FR-086, FR-087, FR-088, FR-089, FR-090, FR-091, FR-092, FR-093, FR-094, FR-095, FR-096, FR-097, FR-098, FR-099, FR-100, FR-101, FR-102, FR-103, FR-104, FR-105, FR-106, FR-107, FR-108, FR-109, FR-110, FR-111, FR-112, FR-113, FR-114, FR-115, FR-116, FR-117, FR-118, FR-119 | NFR-005 | — |
 | UR-09 | FR-120, FR-121, FR-122, FR-123, FR-124, FR-125, FR-126 | — | — |
 | UR-10 | FR-127, FR-128, FR-129, FR-130, FR-131, FR-132, FR-133, FR-134, FR-135, FR-136, FR-137, FR-138, FR-139, FR-142, FR-145, FR-146, FR-147, FR-148, FR-149, FR-150, FR-151, FR-152 | — | — |
-| UR-11 | FR-153, FR-154, FR-155, FR-156, FR-157, FR-158, FR-159, FR-160, FR-161, FR-162, FR-163, FR-164, FR-165, FR-166, FR-167, FR-168, FR-169, FR-170, FR-171 | — | — |
+| UR-11 | FR-153, FR-154, FR-155, FR-156, FR-157, FR-158, FR-159, FR-160, FR-161, FR-162, FR-163, FR-164, FR-165, FR-166, FR-167, FR-168, FR-169, FR-170, FR-171 | NFR-006 | — |
 | UR-12 | FR-172, FR-173, FR-174, FR-175, FR-176, FR-177, FR-178, FR-179, FR-180, FR-207 | — | — |
 | UR-13 | FR-181, FR-182, FR-183, FR-184, FR-185, FR-186, FR-187, FR-208, FR-209, FR-210, FR-211, FR-212 | — | — |
+
+Los requisitos no funcionales globales (`NFR-001`, `NFR-002`, `NFR-003`, `NFR-004`, `NFR-007`, `NFR-008`, `NFR-009`, `NFR-010`, `NFR-011`, `NFR-012`, `NFR-013`, `NFR-014`) condicionan la plataforma completa y aplican a la totalidad de los requisitos de usuario.
 
 ## 7. Control de cambios
 
@@ -309,6 +338,8 @@ Los identificadores no se reutilizan ni se renumeran. Cuando se acepta un cambio
 
 | Versión | Fecha | Cambios | Requisitos afectados | Fuente o evidencia |
 | --- | --- | --- | --- | --- |
+| 1.12 | 29/09/2026 | Se incorporan los quince NFR de la primera versión, con ámbito (G/L), asociaciones a UR/FR, procedencia y método de comprobación. NFR-007 se clasifica como Rendimiento y Mantenibilidad. Se añade índice del documento. | NFR-001–NFR-015 | [Acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md) |
+| 1.11 | 24/09/2026 | Se retira FR-149 por ser incompatible con la responsabilidad exclusiva del coordinador en la administración y moderación del foro. | FR-149 | [Acta de captura de requisitos generales, apartado 4](../captura/acta-captura-requisitos-generales.md#4-foro-interacción-y-moderación) |
 | 1.10 | 23/09/2026 | Se sustituyen los intervalos por enumeraciones explícitas de FR en las asociaciones de los UR y en la matriz de trazabilidad. | UR-01–UR-13 | Mejora de legibilidad del catálogo |
 | 1.9 | 23/09/2026 | Se declara consolidada la base funcional de partida: contiene los UR y FR canónicos y mantiene los NFR pendientes. | UR-01–UR-13, FR-001–FR-217 | Catálogo canónico de requisitos, v2.0 |
 | 1.8 | 22/09/2026 | Se actualizan las asociaciones BO–UR en el catálogo. | BO-01–BO-06, UR-04–UR-13 | Análisis de trazabilidad del catálogo |
