@@ -2,9 +2,9 @@
 
 ## Especificación de requisitos de software
 
-**Versión:** 0.10  
-**Fecha:** 23/09/2026  
-**Estado:** Base documental con UR y FR consolidados; NFR y glosario pendientes  
+**Versión:** 0.14
+**Fecha:** 29/09/2026
+**Estado:** UR, FR y NFR consolidados; glosario del dominio incorporado
 **Destinatarios:** partes interesadas del proyecto
 
 Este documento reúne la especificación de requisitos de software (SRS) de
@@ -13,10 +13,11 @@ catálogo de requisitos, al que esta SRS enlaza sin duplicarlo. El glosario form
 parte de esta SRS, en la sección 9.
 
 En esta versión se fija la estructura y se incorpora el contexto confirmado en
-el Documento de Visión y Alcance y en el acta de captura de A03. Los requisitos
-de usuario y funcionales ya están consolidados en el catálogo. Los requisitos
-no funcionales y el glosario permanecen pendientes. Ningún apartado pendiente
-autoriza a completar información por suposición.
+el Documento de Visión y Alcance y en el acta de captura de requisitos generales.
+Los requisitos de usuario, funcionales y no funcionales ya están consolidados
+en el catálogo. Esta SRS incorpora el glosario del dominio y las decisiones
+pendientes confirmadas. Ningún apartado pendiente autoriza a completar
+información por suposición.
 
 ## Índice
 
@@ -222,18 +223,17 @@ Los requisitos no funcionales canónicos se mantienen en el
 [catálogo de requisitos](./catalogo-requisitos.md). Cada uno incluye
 identificador, condición comprobable, fuente y ámbito global o local.
 
-Los atributos que se revisarán incluyen rendimiento, seguridad, disponibilidad
-y fiabilidad, usabilidad y accesibilidad, compatibilidad y portabilidad, y
-obligaciones legales y normativas.
+Los NFR consolidados abarcan atributos de calidad, restricciones de diseño e
+implementación y requisitos de interfaz externa. La relación de los NFR
+locales con identificadores UR o FR concretos queda consolidada en el catálogo.
 
 Los requisitos legales y normativos se registrarán como NFR y no se duplicarán
 en la sección 8.
 
 ### 6.1 Organización por atributo
 
-El catálogo clasifica los NFR por rendimiento; seguridad y privacidad;
-disponibilidad y fiabilidad; usabilidad y accesibilidad; compatibilidad y
-portabilidad; y obligaciones legales y normativas.
+El catálogo distingue requisitos de calidad (`NFR-Q`), restricciones de diseño
+e implementación (`NFR-R`) y requisitos de interfaz externa (`NFR-I`).
 
 ### 6.2 Obligaciones legales y normativas
 
@@ -255,9 +255,18 @@ sin una fuente confirmada.
 
 | Identificador | Decisión o pregunta | Fuente | Estado |
 | --- | --- | --- | --- |
-| DP-01 | Precisar versiones compatibles de los navegadores de uso habitual. | Acta de A03, §7.4 | Pendiente |
-| DP-02 | Precisar protocolos y formatos de las integraciones externas. | Sección 5.2 de esta SRS | Pendiente |
-| DP-03 | Precisar formatos regionales y condiciones verificables de localización. | Acta de A03, §7.2 | Pendiente |
+| DP-01 | Precisar versiones compatibles de los navegadores de uso habitual. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.4 | Pendiente |
+| DP-02 | Precisar protocolos y formatos de las integraciones externas (servicio de correo y notificaciones). | Sección 5.2 de esta SRS | Pendiente |
+| DP-03 | Precisar formatos regionales y condiciones verificables de localización. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.2 | Pendiente |
+| DP-04 | Concretar qué documentos son válidos para la acreditación profesional de nutricionistas y el procedimiento de verificación de identidad. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.3 y §9 | Pendiente |
+| DP-05 | Concretar la representación y estructura de los datos de salud del perfil para filtrar recetas sin emitir recomendaciones clínicas automáticas. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §9; [Acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §4 | Pendiente |
+| DP-06 | Definir el mecanismo técnico y flujo detallado de autorización entre paciente y cuidador. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §9 | Pendiente |
+| DP-07 | Definir la política de publicación de contenidos, categorías detalladas de reportes y procedimientos de moderación y apelación. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4 y §9 | Pendiente |
+| DP-08 | Definir la extensión máxima y normas editoriales de las publicaciones de salud. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §5 y §9 | Pendiente |
+| DP-09 | Seleccionar el distintivo visual (icono o estrella) definitivo para identificar a nutricionistas acreditados en la interfaz. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.3 y §8 | Pendiente |
+| DP-10 | Precisar los elementos interactivos concretos y multimedia de la guía de usuario. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §6 y §9 | Pendiente |
+| DP-11 | Concretar los plazos de conservación, supresión y anonimización de datos personales y de salud conforme al RGPD y LOPDGDD. | [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §2.5 | Pendiente |
+| DP-12 | Concretar el procedimiento de captación y carga del conjunto inicial de al menos 50 recetas validadas antes de la apertura. | [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §3.3; [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 | Pendiente |
 
 ## 9. Glosario
 
@@ -268,6 +277,29 @@ enlazar a los términos de esta sección, pero no los definirá de nuevo.
 
 | Término | Definición en Proyecto Simbiosis | Fuente |
 | --- | --- | --- |
+| Paciente | Persona con EII que utiliza la plataforma para gestionar sus datos de salud y encontrar recetas adecuadas a su perfil. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §3 |
+| Cuidador | Persona que cuida a uno o varios pacientes y cuyo acceso a los datos de salud de cada uno requiere su autorización expresa. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 |
+| Relación de cuidado | Asociación entre un paciente y un cuidador aceptada por el paciente. Mientras esté vigente, permite al cuidador acceder únicamente a los datos de salud autorizados. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.2.3 |
+| Nutricionista | Rol profesional común a médicos y nutricionistas acreditados. Una vez aprobado, puede publicar y validar recetas en la plataforma. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.2, §1.3 y §3 |
+| Acreditación profesional | Presentación y revisión de documentación oficial para habilitar las funciones reservadas al rol de nutricionista. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.6; [acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.3 |
+| Coordinador | Rol responsable de administrar y moderar el foro y de aprobar las cuentas de cuidadores y nutricionistas. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.3.2 |
+| Alias | Identificador único elegido durante el registro que se muestra en el foro y otros espacios públicos como identidad visible de la persona usuaria. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.1 y §2.2 |
+| Cuenta activa | Cuenta cuyo correo electrónico ya se ha verificado mediante el enlace de activación. La activación no habilita por sí sola las funciones profesionales, que requieren aprobación. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.4 y §2.6 |
+| Datos de salud | Información relativa a la salud de un paciente, de carácter privado, cuyo acceso por cuidadores o nutricionistas depende de la autorización correspondiente. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §7.1; [acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.6 |
+| Perfil de salud | Conjunto de datos de salud asociados a un paciente que la plataforma puede utilizar para mostrarle recetas adecuadas. Su representación concreta sigue pendiente de decidir. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2; [acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §4 |
+| Dato fisiológico | Medición del estado físico o de salud introducida por el paciente, como peso, altura, presión arterial, frecuencia cardíaca o temperatura corporal. | [Acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.1 |
+| Restricción alimentaria | Condición declarada por un paciente que debe tenerse en cuenta al buscar recetas adecuadas para él. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta adaptada | Receta adecuada al perfil, las alergias y las restricciones alimentarias declaradas por el paciente; el sistema no modifica automáticamente sus ingredientes ni cantidades. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta propuesta | Receta aportada por un paciente o cuidador que necesita la validación de un nutricionista antes de publicarse como validada. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta validada | Receta publicada directamente por un nutricionista o aprobada por él tras haber sido propuesta por un paciente o cuidador. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Publicación de salud | Artículo breve sobre alimentación y hábitos de vida saludables dirigido a pacientes y cuidadores, publicado por un nutricionista. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §5 |
+| Reporte de contenido | Aviso de una persona usuaria sobre contenido que considera inapropiado y que corresponde revisar al coordinador. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.4.1 |
+| Enfermedad Inflamatoria Intestinal (EII) | Denominación clínica de los trastornos inflamatorios crónicos del aparato digestivo que padecen los usuarios objetivo de la plataforma y que motivan la adaptación dietética. | [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §1.1 y §1.2 |
+| Umbral crítico | Valor límite o rango médico predefinido que, al ser rebasado por los datos fisiológicos registrados por un paciente, desencadena una notificación o alerta de salud. | [Acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.5; Catálogo de requisitos, FR-051 |
+| Alerta crítica | Notificación generada por el sistema ante valores fisiológicos fuera de rango que advierte al paciente de la situación y le sugiere buscar atención médica profesional. | [Acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.5; Catálogo de requisitos, FR-051 y FR-217 |
+| Moderación de contenidos | Función exclusiva del coordinador que consiste en revisar, aprobar, editar o eliminar recetas, hilos, comentarios o reportes para asegurar un entorno comunitario seguro y conforme a las normas. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; [Documento de Visión y Alcance](../vision/vision_y_alcance.md), §2.2 |
+| Guía interactiva | Módulo de orientación y ayuda disponible en la plataforma que proporciona instrucciones contextuales paso a paso para el uso de sus funcionalidades sin utilizar asistentes conversacionales. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §6; Catálogo de requisitos, UR-12 |
+| Mensaje directo | Mensaje privado enviado directamente entre usuarios registrados a través de la plataforma para permitir su comunicación individualizada. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; Catálogo de requisitos, FR-196 |
 
 ## 10. Modelos de análisis
 
@@ -305,13 +337,15 @@ mantener enlaces hacia sus requisitos de origen.
 
 ## Estado de la versión
 
-Esta versión 0.10 define la arquitectura documental, el contexto confirmado y
-las convenciones de redacción de UR, FR y NFR. Incorpora los acuerdos de A03
+Esta versión 0.14 define la arquitectura documental, el contexto confirmado y
+las convenciones de redacción de UR, FR y NFR. Incorpora los acuerdos del acta
+de captura de requisitos generales
 sobre el rol de nutricionista, el alcance, los idiomas, los navegadores y la
 infraestructura. También separa la SRS, que explica la especificación integrada,
 del catálogo, que es la fuente canónica de los requisitos atómicos. Los
-requisitos de usuario y funcionales ya están consolidados en el catálogo. El
-glosario forma parte de esta SRS.
+requisitos de usuario, funcionales y no funcionales ya están consolidados en el
+catálogo. El glosario del dominio forma parte de esta SRS en la sección 9, y
+las cuestiones abiertas pendientes de decisión se registran en la sección 8.
 
-Antes de publicar la línea base v1.0 se consolidarán los requisitos no
-funcionales, el glosario y los enlaces de trazabilidad.
+Antes de publicar la línea base v1.0 se completarán los enlaces de trazabilidad
+pendientes.
